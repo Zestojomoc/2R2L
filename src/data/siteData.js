@@ -77,7 +77,7 @@ export const galleryCategories = [
 ]
 
 export const galleryItems = [
-  ...Array.from({ length: 25 }, (_, index) => ({
+  ...Array.from({ length: 30 }, (_, index) => ({
     title: `Unit ${String(index + 1).padStart(2, '0')}`,
     category: 'The Units',
     image: `/images/gallery-${String(index + 1).padStart(2, '0')}.jpg`,
