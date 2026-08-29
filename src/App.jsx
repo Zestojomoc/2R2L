@@ -93,6 +93,20 @@ function App() {
   }, [])
 
   useEffect(() => {
+    if (!mobileMenuOpen) {
+      document.body.style.overflow = ''
+      return
+    }
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+    }
+  }, [mobileMenuOpen])
+
+  useEffect(() => {
     const onKeyDown = (event) => {
       if (lightboxIndex === null) return
 
@@ -142,6 +156,8 @@ function App() {
             type="button"
             className="menu-button"
             aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation"
             onClick={() => setMobileMenuOpen((open) => !open)}
           >
             {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -151,6 +167,7 @@ function App() {
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
+              id="mobile-navigation"
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}

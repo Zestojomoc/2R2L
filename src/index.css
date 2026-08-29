@@ -16,13 +16,20 @@
   scroll-behavior: smooth;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
   min-width: 320px;
+  max-width: 100%;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 26%),
     #09090b;
@@ -332,7 +339,7 @@ button {
 .section-heading h2,
 .venue-copy h2,
 .contact-copy h2 {
-  font-size: clamp(2.1rem, 4vw, 4rem);
+  font-size: clamp(2.1rem, 5vw, 4rem);
 }
 
 .about-grid,
@@ -494,6 +501,15 @@ button {
 
 .map-panel {
   position: relative;
+  min-height: 500px;
+  overflow: hidden;
+}
+
+.map-panel img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   min-height: 500px;
 }
 
@@ -907,6 +923,7 @@ button {
 @media (max-width: 640px) {
   .nav {
     min-height: 68px;
+    gap: 0.75rem;
   }
 
   .brand {
@@ -914,17 +931,137 @@ button {
     letter-spacing: 0.1em;
   }
 
+  .brand-mark {
+    width: 30px;
+    height: 30px;
+  }
+
+  .topbar .brand-mark {
+    width: 48px;
+    height: 28px;
+  }
+
+  .hero-section {
+    min-height: 78vh;
+  }
+
   .hero-content {
     padding-top: 6.5rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .hero-logo {
+    width: min(380px, 78vw);
   }
 
   .hero-copy h1 {
-    font-size: 3.2rem;
+    font-size: clamp(2.5rem, 15vw, 3.3rem);
+  }
+
+  .scroll-cue {
+    margin-top: 1.5rem;
+    padding: 0.7rem 1rem;
+    font-size: 0.62rem;
+    letter-spacing: 0.12em;
+  }
+
+  .section-shell {
+    padding: 4rem 0;
+  }
+
+  .section-heading {
+    margin-bottom: 1.75rem;
+  }
+
+  .section-heading h2,
+  .venue-copy h2,
+  .contact-copy h2 {
+    font-size: clamp(2rem, 10vw, 2.8rem);
+    line-height: 0.98;
+  }
+
+  .about-grid,
+  .venue-grid,
+  .marilaque-layout,
+  .contact-panel {
+    gap: 1.5rem;
+  }
+
+  .about-image-panel,
+  .venue-photo {
+    aspect-ratio: auto;
+    min-height: auto;
+    overflow: visible;
+  }
+
+  .about-image-stack,
+  .venue-image-stack {
+    position: relative;
+    inset: auto;
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .about-stack-card,
+  .venue-stack-card {
+    position: relative;
+    width: 100%;
+    height: 240px;
+    inset: auto;
+  }
+
+  .map-panel {
+    min-height: 360px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .map-panel img {
+    min-width: 540px;
+    min-height: 360px;
+    width: 100%;
+    height: auto;
+  }
+
+  .map-marker {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.62rem;
+  }
+
+  .stop-card {
+    padding: 1.15rem;
+  }
+
+  .venue-meta {
+    gap: 0.5rem;
+  }
+
+  .cta-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .primary-button,
+  .secondary-button {
+    width: 100%;
   }
 
   .gallery-grid,
   .stats-grid {
     grid-template-columns: 1fr;
+  }
+
+  .gallery-card {
+    min-height: 220px;
+  }
+
+  .contact-panel {
+    padding: 1.2rem;
+  }
+
+  .social-link {
+    min-height: 46px;
   }
 
   .footer-inner,
@@ -934,6 +1071,11 @@ button {
     justify-content: center;
     padding-top: 1rem;
     padding-bottom: 1rem;
+  }
+
+  .footer-links,
+  .footer-socials {
+    gap: 0.7rem 1rem;
   }
 
   .lightbox-shell {
