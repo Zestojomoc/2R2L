@@ -137,7 +137,7 @@ function App() {
       <header ref={headerRef} className="topbar">
         <nav className="nav container" aria-label="Main navigation">
           <a href="#home" className="brand" aria-label="Home">
-            <img src="/images/logo.png" alt="2R2L group logo" className="brand-mark" />
+            2R2L
           </a>
 
           <div className="desktop-nav" aria-label="Desktop navigation">
