@@ -102,7 +102,6 @@ main {
   text-transform: uppercase;
   font-size: 0.72rem;
   font-weight: 700;
-  font-style: italic;
 }
 
 .brand-mark {
@@ -800,6 +799,7 @@ main {
 
 .footer-brand {
   flex-shrink: 0;
+  font-style: italic;
 }
 
 .footer-links,

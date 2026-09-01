@@ -137,7 +137,7 @@ function App() {
       <header ref={headerRef} className="topbar">
         <nav className="nav container" aria-label="Main navigation">
           <a href="#home" className="brand" aria-label="Home">
-            2R2L
+            <img src="/images/logo.png" alt="2R2L group logo" className="brand-mark" />
           </a>
 
           <div className="desktop-nav" aria-label="Desktop navigation">
@@ -521,7 +521,6 @@ function App() {
       <footer className="footer">
         <div className="container footer-inner">
           <div className="brand footer-brand">
-            <img src="/images/logo.png" alt="2R2L group logo" className="brand-mark" />
             <span>{groupInfo.name}</span>
           </div>
 
