@@ -87,7 +87,12 @@ const buildGallerySection = (categoryKey, categoryLabel, startIndex, length) =>
 
 export const gallerySections = {
   units: buildGallerySection('units', 'Unit', 1, 10),
-  tambike: [],
+  tambike: [
+    { id: 'tambike-01', title: 'Tambike 01', category: 'Tambike', image: '/images/tambike1.jpg' },
+    { id: 'tambike-02', title: 'Tambike 02', category: 'Tambike', image: '/images/tambike2.jpg' },
+    { id: 'tambike-03', title: 'Tambike 03', category: 'Tambike', image: '/images/tambike3.jpg' },
+    { id: 'tambike-04', title: 'Tambike 04', category: 'Tambike', image: '/images/tambike4.jpg' },
+  ],
   crossmeet: [],
 }
 
