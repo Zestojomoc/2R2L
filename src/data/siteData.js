@@ -93,7 +93,21 @@ export const gallerySections = {
     { id: 'tambike-03', title: 'Tambike 03', category: 'Tambike', image: '/images/tambike3.jpg' },
     { id: 'tambike-04', title: 'Tambike 04', category: 'Tambike', image: '/images/tambike4.jpg' },
   ],
-  crossmeet: [],
+  crossmeet: [
+    { id: 'crossmeet-01', title: 'Crossmeet 01', category: 'Crossmeet', image: '/images/C1.jpg' },
+    { id: 'crossmeet-02', title: 'Crossmeet 02', category: 'Crossmeet', image: '/images/C2.jpg' },
+    { id: 'crossmeet-03', title: 'Crossmeet 03', category: 'Crossmeet', image: '/images/C3.jpg' },
+    { id: 'crossmeet-04', title: 'Crossmeet 04', category: 'Crossmeet', image: '/images/C4.jpg' },
+    { id: 'crossmeet-05', title: 'Crossmeet 05', category: 'Crossmeet', image: '/images/C5.jpg' },
+    { id: 'crossmeet-06', title: 'Crossmeet 06', category: 'Crossmeet', image: '/images/C6.jpg' },
+    { id: 'crossmeet-07', title: 'Crossmeet 07', category: 'Crossmeet', image: '/images/C7.jpg' },
+    { id: 'crossmeet-08', title: 'Crossmeet 08', category: 'Crossmeet', image: '/images/C8.jpg' },
+    { id: 'crossmeet-09', title: 'Crossmeet 09', category: 'Crossmeet', image: '/images/C9.jpg' },
+    { id: 'crossmeet-10', title: 'Crossmeet 10', category: 'Crossmeet', image: '/images/C10.jpg' },
+    { id: 'crossmeet-11', title: 'Crossmeet 11', category: 'Crossmeet', image: '/images/C11.jpg' },
+    { id: 'crossmeet-12', title: 'Crossmeet 12', category: 'Crossmeet', image: '/images/C12.jpg' },
+    { id: 'crossmeet-13', title: 'Crossmeet 13', category: 'Crossmeet', image: '/images/C13.jpg' },
+  ],
 }
 
 export const socialLinks = [
