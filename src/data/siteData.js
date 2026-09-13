@@ -68,21 +68,28 @@ export const marilaqueStops = [
 ]
 
 export const galleryCategories = [
-  'All',
-  'Group Rides',
-  'Marilaque',
-  'Night Rides',
-  'Tambike',
-  'Events',
+  { id: 'units', label: 'UNITS' },
+  { id: 'tambike', label: 'TAMBIKE' },
+  { id: 'crossmeet', label: 'CROSSMEET' },
 ]
 
-export const galleryItems = [
-  ...Array.from({ length: 30 }, (_, index) => ({
-    title: `Unit ${String(index + 1).padStart(2, '0')}`,
-    category: 'The Units',
-    image: `/images/gallery-${String(index + 1).padStart(2, '0')}.jpg`,
-  })),
-]
+const buildGallerySection = (categoryKey, categoryLabel, startIndex, length) =>
+  Array.from({ length }, (_, index) => {
+    const imageNumber = startIndex + index
+
+    return {
+      id: `${categoryKey}-${String(imageNumber).padStart(2, '0')}`,
+      title: `${categoryLabel} ${String(imageNumber).padStart(2, '0')}`,
+      category: categoryLabel,
+      image: `/images/gallery-${String(imageNumber).padStart(2, '0')}.jpg`,
+    }
+  })
+
+export const gallerySections = {
+  units: buildGallerySection('units', 'Unit', 1, 10),
+  tambike: [],
+  crossmeet: [],
+}
 
 export const socialLinks = [
   { label: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61590643385237', platform: 'facebook' },

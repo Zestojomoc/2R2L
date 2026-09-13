@@ -16,7 +16,8 @@ import {
   X,
 } from 'lucide-react'
 import {
-  galleryItems,
+  galleryCategories,
+  gallerySections,
   groupInfo,
   marilaqueStops,
   navItems,
@@ -55,7 +56,28 @@ function App() {
   const [venueImageIndex, setVenueImageIndex] = useState(0)
   const headerRef = useRef(null)
 
-  const visibleGalleryItems = galleryItems
+  const getInitialGalleryCategory = () => {
+    const hash = window.location.hash.replace('#', '')
+    const [, maybeCategory] = hash.split('/')
+
+    if (maybeCategory && galleryCategories.some((category) => category.id === maybeCategory)) {
+      return maybeCategory
+    }
+
+    return 'units'
+  }
+
+  const [activeGalleryCategory, setActiveGalleryCategory] = useState(getInitialGalleryCategory)
+
+  const visibleGalleryItems = gallerySections[activeGalleryCategory] ?? gallerySections.units
+  const hasGalleryItems = visibleGalleryItems.length > 0
+
+  useEffect(() => {
+    const categoryHash = `#gallery/${activeGalleryCategory}`
+    if (window.location.hash !== categoryHash) {
+      window.history.replaceState(null, '', categoryHash)
+    }
+  }, [activeGalleryCategory])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -131,6 +153,11 @@ function App() {
 
   const selectedStopData = marilaqueStops.find((stop) => stop.id === selectedStop) ?? marilaqueStops[0]
   const currentImage = visibleGalleryItems[lightboxIndex] ?? null
+
+  const handleGalleryCategoryChange = (categoryId) => {
+    setActiveGalleryCategory(categoryId)
+    setLightboxIndex(null)
+  }
 
   return (
     <div className="page-shell text-stone-100">
@@ -442,26 +469,63 @@ function App() {
               className="section-heading"
             >
               <p className="eyebrow">GALLERY</p>
-              <h2>THE UNITS.</h2>
+              <h2>{galleryCategories.find((category) => category.id === activeGalleryCategory)?.label ?? 'UNITS'}.</h2>
             </motion.div>
 
-            <div className="gallery-grid">
-              {visibleGalleryItems.map((item, index) => (
-                <motion.button
-                  key={`${item.title}-${index}`}
+            <div className="gallery-toolbar" role="tablist" aria-label="Gallery categories">
+              {galleryCategories.map((category) => (
+                <button
+                  key={category.id}
                   type="button"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.45, delay: index * 0.05 }}
-                  className="gallery-card"
-                  onClick={() => setLightboxIndex(index)}
+                  role="tab"
+                  aria-selected={activeGalleryCategory === category.id}
+                  className={activeGalleryCategory === category.id ? 'gallery-tab active' : 'gallery-tab'}
+                  onClick={() => handleGalleryCategoryChange(category.id)}
                 >
-                  <img src={item.image} alt={item.title} loading="lazy" />
-                  <span>{item.title}</span>
-                </motion.button>
+                  {category.label}
+                </button>
               ))}
             </div>
+
+            <AnimatePresence mode="wait">
+              {hasGalleryItems ? (
+                <motion.div
+                  key={activeGalleryCategory}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ duration: 0.28, ease: 'easeOut' }}
+                  className="gallery-grid"
+                >
+                  {visibleGalleryItems.map((item, index) => (
+                    <motion.button
+                      key={`${item.id}-${index}`}
+                      type="button"
+                      initial={{ opacity: 0, y: 10 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.2 }}
+                      transition={{ duration: 0.45, delay: index * 0.04 }}
+                      className="gallery-card"
+                      onClick={() => setLightboxIndex(index)}
+                    >
+                      <img src={item.image} alt={item.title} loading="lazy" />
+                      <span>{item.title}</span>
+                    </motion.button>
+                  ))}
+                </motion.div>
+              ) : (
+                <motion.div
+                  key={`${activeGalleryCategory}-empty`}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -12 }}
+                  transition={{ duration: 0.28, ease: 'easeOut' }}
+                  className="gallery-empty-state"
+                >
+                  <p>No photos uploaded yet for this category.</p>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </section>
 
