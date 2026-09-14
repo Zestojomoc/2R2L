@@ -509,7 +509,7 @@ function App() {
                       onClick={() => setLightboxIndex(index)}
                     >
                       <img src={item.image} alt={item.title} loading="lazy" />
-                      {activeGalleryCategory !== 'tambike' && <span>{item.title}</span>}
+                      {activeGalleryCategory === 'units' && <span>{item.title}</span>}
                     </motion.button>
                   ))}
                 </motion.div>
