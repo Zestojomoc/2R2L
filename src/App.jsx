@@ -159,6 +159,16 @@ function App() {
     setLightboxIndex(null)
   }
 
+  const handleMobileNavClick = (event, sectionId) => {
+    event.preventDefault()
+    setMobileMenuOpen(false)
+    window.history.pushState(null, '', `#${sectionId}`)
+
+    window.setTimeout(() => {
+      document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }, 0)
+  }
+
   return (
     <div className="page-shell text-stone-100">
       <header ref={headerRef} className="topbar">
@@ -205,7 +215,7 @@ function App() {
                   key={item.id}
                   href={`#${item.id}`}
                   className={activeSection === item.id ? 'mobile-link active' : 'mobile-link'}
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(event) => handleMobileNavClick(event, item.id)}
                 >
                   {item.label}
                 </a>
